@@ -212,27 +212,49 @@ body {
 
 .fan-tag {
   position: absolute;
-  top: 10px;
+  top: -8px;
   z-index: 20;
-  padding: 8px 18px;
-  border-radius: 100px;
-  font-size: .82rem;
+  padding: 9px 16px;
+  border-radius: 18px;
+  font-size: .8rem;
   font-weight: 600;
   letter-spacing: .01em;
+  /* speech bubble tail via ::after */
+}
+
+.fan-tag::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  width: 0;
+  height: 0;
+  border-style: solid;
 }
 
 .tag-left {
-  left: 60px;
+  left: 80px;
   background: var(--blue);
   color: var(--white);
   text-decoration: none;
   cursor: pointer;
 }
 
+.tag-left::after {
+  left: 20px;
+  border-width: 10px 7px 0 7px;
+  border-color: var(--blue) transparent transparent transparent;
+}
+
 .tag-right {
-  right: 60px;
-  background: #e5e5e5;
+  right: 80px;
+  background: #e8e8e8;
   color: #111;
+}
+
+.tag-right::after {
+  right: 20px;
+  border-width: 10px 7px 0 7px;
+  border-color: #e8e8e8 transparent transparent transparent;
 }
 
 .fan-card {
