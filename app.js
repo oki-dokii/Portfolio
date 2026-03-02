@@ -51,24 +51,202 @@ let heroEntranceDone = false;
   }, 2800);
 })();
 
+// Text Wave Hover
+const monoHeadings = document.querySelectorAll('.mono-heading');
+monoHeadings.forEach(heading => {
+  if (heading.textContent.trim() === 'Feature Presentation') {
+    const text = heading.textContent.trim();
+    heading.innerHTML = '';
+    heading.classList.add('wave-text-container');
 
-/* ─── TYPEWRITER for hero role ─── */
-const roles = ['Software Engineer', 'Full-Stack Dev', 'AI / ML Explorer', 'SIH Winner', 'Problem Solver'];
-let ri = 0, ci = 0, deleting = false;
+    const chars = [];
+    text.split('').forEach(char => {
+      if (char === ' ') {
+        const space = document.createElement('span');
+        space.innerHTML = '&nbsp;';
+        heading.appendChild(space);
+      } else {
+        const charSpan = document.createElement('span');
+        charSpan.textContent = char;
+        charSpan.classList.add('hover-char');
+        heading.appendChild(charSpan);
+        chars.push(charSpan);
+      }
+    });
+
+    chars.forEach((charSpan, i) => {
+      charSpan.addEventListener('mouseenter', () => {
+        if (chars[i - 1]) chars[i - 1].classList.add('neighbor-1');
+        if (chars[i + 1]) chars[i + 1].classList.add('neighbor-1');
+        if (chars[i - 2]) chars[i - 2].classList.add('neighbor-2');
+        if (chars[i + 2]) chars[i + 2].classList.add('neighbor-2');
+      });
+      charSpan.addEventListener('mouseleave', () => {
+        if (chars[i - 1]) chars[i - 1].classList.remove('neighbor-1');
+        if (chars[i + 1]) chars[i + 1].classList.remove('neighbor-1');
+        if (chars[i - 2]) chars[i - 2].classList.remove('neighbor-2');
+        if (chars[i + 2]) chars[i + 2].classList.remove('neighbor-2');
+      });
+    });
+  }
+});
+
+// Scattered Floating Project Cards (Reference Style)
+const stageItems = gsap.utils.toArray('.stage-item');
+
+// 5 cards positioned loosely like floating screens
+const floatTransforms = [
+  { x: -300, y: -20, rotX: 15, rotY: 20, rotZ: -8 }, // LoadOptimize
+  { x: 0, y: -50, rotX: 10, rotY: -5, rotZ: 3 },    // DPR
+  { x: 300, y: 0, rotX: 5, rotY: -25, rotZ: 6 },  // GiftAI
+  { x: -160, y: 140, rotX: 20, rotY: 10, rotZ: -5 }, // SmartCampus
+  { x: 160, y: 130, rotX: -15, rotY: -10, rotZ: 12 }, // SmartClinic
+];
+
+let floatTweens = [];
+
+stageItems.forEach((item, i) => {
+  const t = floatTransforms[i];
+
+  gsap.set(item, {
+    x: t.x,
+    y: t.y,
+    rotationX: t.rotX,
+    rotationY: t.rotY,
+    rotationZ: t.rotZ,
+    opacity: 0,
+    scale: 0.6
+  });
+
+  gsap.to(item, {
+    opacity: 1,
+    scale: 0.9,
+    duration: 1.5,
+    delay: 0.2 + i * 0.1,
+    ease: "power3.out"
+  });
+
+  // Continuous subtle float
+  let ft = gsap.to(item, {
+    y: t.y + 15,
+    rotationX: t.rotX + 5,
+    rotationY: t.rotY - 5,
+    duration: 3 + Math.random() * 2,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+    delay: 1.5 + Math.random()
+  });
+  floatTweens.push(ft);
+});
+
+// Register Flip
+gsap.registerPlugin(ScrollTrigger, Flip);
+
+// Scroll trigger for Stage to Grid transition
+let st = ScrollTrigger.create({
+  trigger: "#grid-anchor",
+  start: "top center+=200", // Start snap earlier right below text 
+  onEnter: () => {
+    document.querySelector('.project-section').classList.add('settled');
+
+    // Pause the background floating animations so we flip cleanly
+    floatTweens.forEach(t => t.pause());
+
+    const stageCards = gsap.utils.toArray('.stage-card');
+    const featCards = gsap.utils.toArray('.feat-card');
+    const state = Flip.getState(stageCards);
+
+    // Swap DOM locations
+    featCards.forEach((target, i) => {
+      if (stageCards[i]) {
+        target.insertBefore(stageCards[i], target.firstChild);
+        stageCards[i].classList.add('grid-mode');
+      }
+    });
+
+    Flip.from(state, {
+      duration: 1.0,
+      ease: "power2.inOut",
+      stagger: 0.05
+    });
+
+    // Explicitly hide text before starting fade-in
+    gsap.set('.feat-info', { opacity: 0 });
+    // Start fading in text only AFTER flying images have settled
+    gsap.to('.feat-info', { opacity: 1, duration: 0.6, delay: 1.1, stagger: 0.1 });
+    gsap.to('.stage-item', { opacity: 0, duration: 0.3 }); // Fade out float containers
+  },
+  onLeaveBack: () => {
+    document.querySelector('.project-section').classList.remove('settled');
+
+    // Instantly hide text so flying objects don't pass over it
+    gsap.killTweensOf('.feat-info');
+    gsap.set('.feat-info', { opacity: 0 });
+
+    const stageCards = gsap.utils.toArray('.stage-card');
+    const stageItemsArray = gsap.utils.toArray('.stage-item');
+    const state = Flip.getState(stageCards);
+
+    // Return to pile
+    stageItemsArray.forEach((item, i) => {
+      if (stageCards[i]) {
+        item.appendChild(stageCards[i]);
+        stageCards[i].classList.remove('grid-mode');
+      }
+    });
+
+    Flip.from(state, {
+      duration: 1.2,
+      ease: "power3.inOut",
+      stagger: -0.05,
+      onComplete: () => {
+        // Resume floating after returning to exact scatter pos
+        floatTweens.forEach(t => t.play());
+      }
+    });
+
+    // No need to animate feat-info to 0 anymore, it's instantly hidden above
+    gsap.to('.stage-item', { opacity: 1, duration: 0.5, delay: 0.3 });
+  }
+});
+
+
+// Typewriter for Hero Role
+const roles = ["Software Engineer", "Full-Stack Dev", "AI/ML Enthusiast", "Optimization Expert"];
+let roleIdx = 0;
 const roleEl = document.getElementById('hero-role');
 
-function typeLoop() {
-  const word = roles[ri];
-  if (!deleting) {
-    roleEl.textContent = word.slice(0, ++ci);
-    if (ci === word.length) { deleting = true; setTimeout(typeLoop, 2000); return; }
-  } else {
-    roleEl.textContent = word.slice(0, --ci);
-    if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
-  }
-  setTimeout(typeLoop, deleting ? 50 : 100);
+function typeRole() {
+  const text = roles[roleIdx];
+  let charIdx = 0;
+  roleEl.textContent = "";
+
+  const interval = setInterval(() => {
+    roleEl.textContent += text[charIdx];
+    charIdx++;
+    if (charIdx >= text.length) {
+      clearInterval(interval);
+      setTimeout(eraseRole, 2000);
+    }
+  }, 100);
 }
-typeLoop();
+
+function eraseRole() {
+  const text = roleEl.textContent;
+  let charIdx = text.length;
+
+  const interval = setInterval(() => {
+    roleEl.textContent = text.substring(0, charIdx - 1);
+    charIdx--;
+    if (charIdx <= 0) {
+      clearInterval(interval);
+      roleIdx = (roleIdx + 1) % roles.length;
+      setTimeout(typeRole, 500);
+    }
+  }, 50);
+}
+if (roleEl) typeRole();
 
 /* ─── Extended Cut cycling word ─── */
 const extWords = ['web dev', 'backend', 'AI tools', 'hackathons', 'data engineering'];
@@ -185,6 +363,26 @@ document.addEventListener('mousemove', e => {
   });
 })();
 
+/* ─── Project Section Transition ─── */
+(function () {
+  const projectSection = document.getElementById('projects');
+  const stageItems = document.querySelectorAll('.stage-item');
+  if (!projectSection) return;
+
+  // Mouse Parallax for Floating Items
+  window.addEventListener('mousemove', (e) => {
+    if (projectSection.classList.contains('settled')) return;
+
+    const x = (e.clientX / window.innerWidth - 0.5) * 40;
+    const y = (e.clientY / window.innerHeight - 0.5) * 40;
+
+    stageItems.forEach((item, i) => {
+      const factor = (i + 1) * 0.2;
+      item.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+    });
+  });
+})();
+
 /* ─── Footer Cube Interaction ─── */
 (function () {
   const trigger = document.getElementById('cube-trigger');
@@ -246,4 +444,128 @@ document.addEventListener('mousemove', e => {
       closeLightbox();
     }
   });
+})();
+
+/* ─── Neural Network Background ─── */
+(function () {
+  const canvas = document.getElementById('neural-bg');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  const particleCount = 120; // Increased
+  const connectionDistance = 160; // Increased visibility
+  let mouse = { x: null, y: null, radius: 180 };
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener('mouseout', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  class Particle {
+    constructor() {
+      this.init();
+    }
+
+    init() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.size = Math.random() * 2 + 1.5; // Bigger
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < 0) this.x = canvas.width;
+      if (this.x > canvas.width) this.x = 0;
+      if (this.y < 0) this.y = canvas.height;
+      if (this.y > canvas.height) this.y = 0;
+
+      if (mouse.x !== null && mouse.y !== null) {
+        let dx = this.x - mouse.x;
+        let dy = this.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          let force = (mouse.radius - dist) / mouse.radius;
+          this.x += (dx / dist) * force * 4;
+          this.y += (dy / dist) * force * 4;
+        }
+      }
+    }
+
+    draw() {
+      ctx.fillStyle = 'rgba(0, 150, 255, 0.8)';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        let dx = particles[i].x - particles[j].x;
+        let dy = particles[i].y - particles[j].y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < connectionDistance) {
+          let opacity = (1 - (dist / connectionDistance)) * 0.5; // More opaque
+          ctx.strokeStyle = `rgba(0, 150, 255, ${opacity})`;
+          ctx.lineWidth = 1.2; // Thicker lines
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  init();
+  animate();
+
+  let lastScroll = window.scrollY;
+  window.addEventListener('scroll', () => {
+    let currentScroll = window.scrollY;
+    let delta = currentScroll - lastScroll;
+    lastScroll = currentScroll;
+
+    particles.forEach(p => {
+      p.y -= delta * 0.08;
+    });
+  }, { passive: true });
 })();
