@@ -603,44 +603,51 @@
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <!-- Simple Logo SVG -->
-                    <svg class="footer-logo-svg" viewBox="0 0 24 24" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L2 7L12 12L22 7L12 2Z" />
-                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" fill="none" />
-                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" fill="none" />
+                    <svg class="footer-logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="rgba(255,255,255,0.05)" />
+                        <path d="M2 17L12 22L22 17" />
+                        <path d="M2 12L12 17L22 12" />
+                        <circle cx="12" cy="7" r="1" fill="currentColor" />
                     </svg>
                 </div>
                 <div class="footer-text">
-                    <p>Designed with ❤️, Logic, and a lot of Chai.</p>
-                    <p>Copyright &copy; 2025 Soham Banerjee.</p>
-                    <p>All rights reserved.</p>
-                </div>
-                <div class="footer-badge">
-                    <a href="#" class="badge-pill">
-                        <div class="badge-icon-wrap">
-                            <svg viewBox="0 0 32 32" width="20" height="20" fill="currentColor">
-                                <path d="M16 4L22 10L28 16L22 22L16 28L10 22L4 16L10 10L16 4Z" opacity="0.3" />
-                                <path d="M16 8L20 12L24 16L20 20L16 24L12 20L8 16L12 12L16 8Z" />
-                            </svg>
-                        </div>
-                        <span class="badge-text">FEATURED ON <br><strong>WALL OF PORTFOLIOS</strong></span>
-                    </a>
+                    <p class="footer-tagline">Building the next generation of digital experiences.</p>
+                    <p class="footer-copy">Designed with ❤️ & Logic &bull; &copy; 2026 Soham Banerjee</p>
+                    <div class="footer-links">
+                        <a href="#hero">Back to Top</a>
+                        <span class="sep">/</span>
+                        <a href="https://github.com/oki-dokii" target="_blank">Source Code</a>
+                    </div>
                 </div>
             </div>
             <div class="footer-right">
                 <div class="cube-container" id="cube-trigger">
                     <div class="cube-viewport">
-                        <div class="cube-wireframe"></div>
+                        <div class="cube-wireframe">
+                            <i class="c-corner tl"></i><i class="c-corner tr"></i>
+                            <i class="c-corner bl"></i><i class="c-corner br"></i>
+                        </div>
                         <div class="cube" id="ui-cube">
+                            <!-- Outer Hologram -->
                             <div class="cube-face front"></div>
                             <div class="cube-face back"></div>
                             <div class="cube-face right"></div>
                             <div class="cube-face left"></div>
                             <div class="cube-face top"></div>
                             <div class="cube-face bottom"></div>
-                            <div class="cube-label">TAP TO INTERACT</div>
+
+                            <!-- Inner Core -->
+                            <div class="cube-core">
+                                <div class="core-face front"></div>
+                                <div class="core-face back"></div>
+                                <div class="core-face right"></div>
+                                <div class="core-face left"></div>
+                                <div class="core-face top"></div>
+                                <div class="core-face bottom"></div>
+                            </div>
                         </div>
+                        <div class="cube-label">INTERACTION ACTIVE</div>
                     </div>
                 </div>
             </div>

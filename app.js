@@ -196,14 +196,15 @@ document.addEventListener('mousemove', e => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // Calculate rotation based on mouse position relative to center
-    const rx = ((y / rect.height) - 0.5) * -60;
-    const ry = ((x / rect.width) - 0.5) * 60;
+    // Higher sensitivity and smoother mapping
+    const rx = ((y / rect.height) - 0.5) * -70;
+    const ry = ((x / rect.width) - 0.5) * 70;
 
     cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
   });
 
   trigger.addEventListener('mouseleave', () => {
-    cube.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    // Return to a nice neutral isometric angle
+    cube.style.transform = `rotateX(-15deg) rotateY(30deg)`;
   });
 })();
