@@ -208,3 +208,42 @@ document.addEventListener('mousemove', e => {
     cube.style.transform = `rotateX(-15deg) rotateY(30deg)`;
   });
 })();
+
+/* ─── Lightbox for Certificates ─── */
+(function () {
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbClose = document.getElementById('lb-close');
+  const certCards = document.querySelectorAll('.cert-card');
+
+  if (!lightbox || !lbImg || !lbClose) return;
+
+  certCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const fullSrc = card.getAttribute('data-full');
+      lbImg.src = fullSrc;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Lock scroll
+    });
+  });
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = ''; // Unlock scroll
+    setTimeout(() => { lbImg.src = ''; }, 400); // Clear src after transition
+  };
+
+  lbClose.addEventListener('click', closeLightbox);
+
+  // Close on backdrop click
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+})();
