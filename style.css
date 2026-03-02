@@ -204,7 +204,7 @@ body {
   width: 960px;
   max-width: 100%;
   height: 380px;
-  margin: 0 auto 60px;
+  margin: 0 auto 140px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -212,14 +212,16 @@ body {
 
 .fan-tag {
   position: absolute;
-  top: -8px;
-  z-index: 20;
+  top: -48px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
   padding: 9px 16px;
   border-radius: 18px;
   font-size: .8rem;
   font-weight: 600;
   letter-spacing: .01em;
-  /* speech bubble tail via ::after */
+  white-space: nowrap;
 }
 
 .fan-tag::after {
@@ -232,7 +234,6 @@ body {
 }
 
 .tag-left {
-  left: 80px;
   background: var(--blue);
   color: var(--white);
   text-decoration: none;
@@ -246,7 +247,6 @@ body {
 }
 
 .tag-right {
-  right: 80px;
   background: #e8e8e8;
   color: #111;
 }
@@ -261,11 +261,19 @@ body {
   position: absolute;
   width: 200px;
   height: 310px;
+  border-radius: 0;
+  overflow: visible;
+  opacity: 0;
+  transition: transform 0.65s cubic-bezier(0.22, 1.2, 0.36, 1), opacity 0.5s ease, box-shadow .3s ease;
+}
+
+.fan-photo-wrap {
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
   overflow: hidden;
-  opacity: 0;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-  transition: transform 0.65s cubic-bezier(0.22, 1.2, 0.36, 1), opacity 0.5s ease, box-shadow .3s ease;
+  transition: box-shadow .3s ease;
 }
 
 .fan-card:hover {
@@ -904,28 +912,46 @@ section#contact {
    ════════════════════════════════ */
 #stack {
   padding: 140px 2rem;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .stack-category {
-  margin-bottom: 56px;
+  margin-bottom: 72px;
+  text-align: center;
 }
 
 .sc-label {
   font-family: 'Space Mono', monospace;
-  font-size: .68rem;
+  font-size: .75rem;
   color: var(--grey2);
-  letter-spacing: .14em;
+  letter-spacing: .2em;
   text-transform: uppercase;
-  margin-bottom: 20px;
-  padding-left: 2px;
+  margin-bottom: 30px;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.sc-label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 1px;
+  background: var(--blue);
+  opacity: 0.5;
 }
 
 .tech-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 16px;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .tech-icon-card {
@@ -933,32 +959,34 @@ section#contact {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  width: 100px;
-  height: 100px;
-  background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 18px;
+  gap: 12px;
+  aspect-ratio: 1/1;
+  background: rgba(17, 17, 17, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
   cursor: default;
-  transition: all .25s ease;
+  transition: all .4s cubic-bezier(0.23, 1, 0.32, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .tech-icon-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04), transparent 70%);
+  background: radial-gradient(circle at center, rgba(0, 128, 255, 0.08), transparent 80%);
   opacity: 0;
-  transition: opacity .25s ease;
+  transition: opacity .4s ease;
 }
 
 .tech-icon-card:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  transform: translateY(-5px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-  background: #1a1a1a;
+  border-color: rgba(0, 128, 255, 0.3);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 128, 255, 0.1);
+  background: rgba(22, 22, 22, 0.8);
 }
 
 .tech-icon-card:hover::before {
@@ -966,74 +994,95 @@ section#contact {
 }
 
 .tech-icon-card img {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
+  filter: grayscale(0.2) contrast(1.1);
   position: relative;
   z-index: 1;
-  transition: transform .25s ease;
+  transition: all .4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .tech-icon-card:hover img {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(3deg);
+  filter: grayscale(0) contrast(1);
 }
 
 .tech-icon-card span {
-  font-size: .65rem;
+  font-size: .68rem;
   color: var(--grey);
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
   text-align: center;
   position: relative;
   z-index: 1;
-  transition: color .2s ease;
-  letter-spacing: .01em;
+  transition: all .3s ease;
 }
 
 .tech-icon-card:hover span {
   color: var(--white);
+  letter-spacing: .12em;
 }
 
-/* Invert dark icons (Express etc.) */
+/* Specific icon adjustments */
 .icon-invert {
-  filter: invert(1) brightness(0.7);
+  filter: invert(1) brightness(0.7) !important;
 }
 
-/* AI cards get blue tint */
+.tech-icon-card:hover .icon-invert {
+  filter: invert(1) brightness(1) !important;
+}
+
+/* AI Highlight */
 .ai-card {
-  border-color: rgba(0, 128, 255, 0.12);
+  border-color: rgba(0, 128, 255, 0.1);
+  background: rgba(0, 128, 255, 0.02);
 }
 
-.ai-card:hover {
-  border-color: rgba(0, 128, 255, 0.35);
-  box-shadow: 0 16px 40px rgba(0, 128, 255, 0.15);
+.ai-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, transparent 50%, rgba(0, 128, 255, 0.1) 50%);
+  z-index: 0;
 }
 
-/* Text-logo icons for Gemini/RAG/PE */
+/* Text-logo icons */
 .icon-text-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: .9rem;
+  font-size: .95rem;
   letter-spacing: -.02em;
   position: relative;
   z-index: 1;
-  transition: transform .25s ease;
-}
-
-.tech-icon-card:hover .icon-text-logo {
-  transform: scale(1.1);
+  transition: all .4s ease;
 }
 
 .gemini-logo {
-  background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
-  background-size: 200% 200%;
-  animation: gemini-shift 4s ease infinite;
+  background: linear-gradient(135deg, #4285f4, #6e9df5);
   color: white;
-  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+.rag-logo {
+  background: linear-gradient(135deg, #8a3ffc, #a78bfa);
+  color: white;
+  box-shadow: 0 4px 12px rgba(138, 63, 252, 0.3);
+}
+
+.pe-logo {
+  background: linear-gradient(135deg, #34a853, #4ade80);
+  color: white;
+  box-shadow: 0 4px 12px rgba(52, 168, 83, 0.3);
 }
 
 @keyframes gemini-shift {
@@ -1048,19 +1097,6 @@ section#contact {
   100% {
     background-position: 0% 50%;
   }
-}
-
-.rag-logo {
-  background: linear-gradient(135deg, #0080ff 0%, #00c4ff 100%);
-  color: white;
-  font-size: .72rem;
-  letter-spacing: .05em;
-}
-
-.pe-logo {
-  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-  color: white;
-  font-size: .8rem;
 }
 
 /* ════════════════════════════════
