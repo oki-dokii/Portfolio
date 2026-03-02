@@ -184,3 +184,26 @@ document.addEventListener('mousemove', e => {
     });
   });
 })();
+
+/* ─── Footer Cube Interaction ─── */
+(function () {
+  const trigger = document.getElementById('cube-trigger');
+  const cube = document.getElementById('ui-cube');
+  if (!trigger || !cube) return;
+
+  trigger.addEventListener('mousemove', (e) => {
+    const rect = trigger.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Calculate rotation based on mouse position relative to center
+    const rx = ((y / rect.height) - 0.5) * -60;
+    const ry = ((x / rect.width) - 0.5) * 60;
+
+    cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+
+  trigger.addEventListener('mouseleave', () => {
+    cube.style.transform = `rotateX(0deg) rotateY(0deg)`;
+  });
+})();
