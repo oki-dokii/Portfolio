@@ -674,79 +674,67 @@ document.addEventListener('DOMContentLoaded', () => {
     chatBody.scrollTop = chatBody.scrollHeight;
   }
 
-  // Pre-programmed Knowledge Base (Local RAG substitute)
-  const knowledgeBase = [
-    {
-      keywords: ['project', 'built', 'build', 'work', 'portfolio'],
-      response: '<p>Soham has architected several high-impact projects:</p><ul><li><strong>LoadOptimize</strong>: An AI pipeline that reduced delivery cost by 18%.</li><li><strong>DPR Analyser</strong>: An LLM-based RAG tool for financial risk parsing.</li><li><strong>GiftAI</strong>: A smart chatbot for product recommendations.</li><li><strong>SmartCampus & SmartClinic</strong>: Scalable management systems built with Spring Boot.</li></ul>'
-    },
-    {
-      keywords: ['explain', 'ai', 'systems', 'intelligence', 'rag', 'llm', 'machine learning'],
-      response: '<p>Soham specializes in integrating AI into practical applications. For instance, in <strong>DPR Analyser</strong>, he used <em>LLMs and RAG</em> to transform 100+ page PDFs into structured schemas for financial risk analysis. In <strong>GiftAI</strong>, he built a conversational recommendation engine using <em>Prompt Engineering and external APIs</em>.</p>'
-    },
-    {
-      keywords: ['github', 'repo', 'commits', 'code', 'open source'],
-      response: '<p>Soham is very active on GitHub! He has over <strong>1,200 commits</strong> and <strong>23+ repositories</strong> under the handle <a href="https://github.com/oki-dokii" target="_blank" style="color:var(--blue);">@oki-dokii</a>. His top languages are TypeScript and Python.</p>'
-    },
-    {
-      keywords: ['problem', 'biggest', 'real-world', 'impact', 'challenge', 'logistics', 'loadoptimize'],
-      response: '<p><strong>LoadOptimize</strong> solved a massive real-world problem: logistics companies struggling with empty truck runs. By designing an AI heuristic optimization engine mathematically focusing on capacity utilization and CO2, he simulated an <strong>18% cost reduction</strong>. This actually won him the <em>Smart India Hackathon 2025</em>!</p>'
-    },
-    {
-      keywords: ['hello', 'hi', 'hey', 'greetings', 'who'],
-      response: 'Hello there! I am Soham\'s digital AI assistant. I am trained entirely on his portfolio context. Feel free to ask me anything about his projects, skills, impact, or GitHub.'
-    },
-    {
-      keywords: ['contact', 'hire', 'email', 'linkedin', 'phone', 'connect'],
-      response: 'You can reach Soham directly via email at <a href="mailto:Soham.Banerjee3106@gmail.com" style="color:var(--blue);">Soham.Banerjee3106@gmail.com</a> or connect with him extensively on <a href="https://www.linkedin.com/in/soham-banerjee-tech" target="_blank" style="color:var(--blue);">LinkedIn</a>.'
+  // Pre-programmed Knowledge Base (Local RAG substitute) - 20 Core Intents
+  const intents = {
+    who_is_soham: "Soham is a developer focused on building intelligent systems that combine AI, optimization, and full-stack engineering. His work focuses on solving real-world problems like logistics optimization and data analysis using modern web and AI technologies.",
+    tech_stack: "Soham primarily works with TypeScript, React, Node.js, and Python. He also works with databases like SQLite and explores AI technologies such as retrieval systems and automation agents.",
+    projects_overview: "Soham has built several systems including LoadOptimize, a logistics optimization engine, and DPR Analyzer, a system designed to analyze daily progress reports and extract actionable insights.",
+    explain_loadoptimize: "LoadOptimize is a weighted logistics optimization engine that ranks trucks for shipment requests using four scoring factors: capacity utilization, route deviation, cost efficiency, and CO₂ impact. It generates the top ranked truck matches to reduce empty runs and improve sustainability.",
+    loadoptimize_algorithm: "LoadOptimize evaluates candidate trucks using a weighted scoring model. It calculates a score for each truck based on capacity utilization, route deviation, cost, and environmental impact, then ranks trucks to produce the best matches for a shipment request.",
+    loadoptimize_problem: "LoadOptimize addresses inefficiencies in logistics where trucks often run partially empty. By ranking the best truck matches for each shipment request, the system helps reduce empty runs and improve overall fleet utilization.",
+    explain_dpr_analyzer: "DPR Analyzer is a system designed to analyze Daily Progress Reports from projects or construction teams. It processes report data to identify key metrics such as progress updates, delays, and resource usage, helping teams track project performance more effectively.",
+    dpr_problem: "Daily Progress Reports often contain large amounts of unstructured information. DPR Analyzer extracts important insights automatically, making it easier for teams to monitor progress and identify issues quickly.",
+    current_interests: "Soham is currently exploring AI agents for automation, large-scale optimization systems, and retrieval-based knowledge systems.",
+    ai_agents: "AI agents are systems that can plan and execute tasks autonomously using tools, APIs, and reasoning. Soham is interested in using agents to automate workflows and build intelligent systems.",
+    rag_systems: "Retrieval-based systems combine search with AI models to answer questions using external knowledge sources. They retrieve relevant information from a database and use it to generate accurate responses.",
+    developer_profile: "Soham focuses on building intelligent systems that combine full-stack development with optimization and AI concepts. His work often bridges backend logic, algorithms, and user-facing applications.",
+    programming_languages: "Soham primarily works with TypeScript, JavaScript, and Python. These languages power most of his full-stack and AI-related projects.",
+    databases: "Soham uses databases such as SQLite and other lightweight storage solutions for building efficient data-driven applications.",
+    future_focus: "Soham is interested in building intelligent systems that combine optimization algorithms, AI agents, and data-driven automation.",
+    contact: "You can connect with Soham through the contact section of this portfolio or through his GitHub and LinkedIn profiles.",
+    github: "You can explore Soham's projects and code on his GitHub profile. It contains repositories covering optimization systems, full-stack applications, and experimental AI tools.",
+    engineering_philosophy: "Soham focuses on building systems that solve real problems. His approach combines algorithmic thinking, clean system design, and practical implementation.",
+    system_types: "Soham builds systems involving optimization, data analysis, and AI-driven automation. Many of his projects combine backend algorithms with interactive web interfaces.",
+    portfolio_guide: "A great place to start is the LoadOptimize project, which demonstrates Soham's work on optimization systems. You can also explore DPR Analyzer to see how he builds data analysis tools."
+  };
+
+  function getBotResponse(userText) {
+    const text = userText.toLowerCase();
+
+    // Simple Router logic based on keywords
+    if (text.includes('who') && text.includes('soham')) return intents.who_is_soham;
+    if (text.includes('tech') || text.includes('technologies')) return intents.tech_stack;
+    if (text.includes('language') || text.includes('languages')) return intents.programming_languages;
+    if (text.includes('database')) return intents.databases;
+
+    if (text.includes('load optimize') || text.includes('loadoptimize')) {
+      if (text.includes('work') || text.includes('how') || text.includes('algorithm')) return intents.loadoptimize_algorithm;
+      if (text.includes('problem')) return intents.loadoptimize_problem;
+      return intents.explain_loadoptimize;
     }
-  ];
 
-  // Comprehensive Soham Developer Context for the true LLM
-  const SOHAM_CONTEXT = `
-You are Soham Banerjee's AI Portfolio Assistant. You must act as a helpful, concise, and enthusiastic assistant embedded in his portfolio website.
-Here is the core information you know about Soham:
-- Projects: LoadOptimize (AI pipeline reducing delivery cost by 18%, won SIH 2025), DPR Analyser (LLM/RAG tool for financial parsing), GiftAI (smart chatbot), SmartCampus & SmartClinic (scalable management systems).
-- GitHub: Very active, 1200+ commits, 23+ repos. Handles @oki-dokii. Top languages: TypeScript, Python, Java, JavaScript.
-- Email: Soham.Banerjee3106@gmail.com
-- Character rules: DO NOT HALLUCINATE. Only answer questions using the facts provided above. If asked something unrelated or code-heavy, steer the conversation gracefully back to Soham's projects or skills. Keep responses short and web-friendly (under 3 sentences). You can use HTML formatting tags like <b> or <i> or <br>.
-  `;
-
-  async function getBotResponse(userText) {
-    // Show typing indicator
-    const typingId = 'typing-' + Date.now();
-    const typingMsg = document.createElement('div');
-    typingMsg.id = typingId;
-    typingMsg.classList.add('ai-msg', 'bot');
-    typingMsg.innerHTML = '<span style="opacity:0.6;font-size:0.9em;">Thinking...</span>';
-    chatBody.appendChild(typingMsg);
-    chatBody.scrollTop = chatBody.scrollHeight;
-
-    try {
-      // Build exactly structured prompt for Pollinations Text Endpoint
-      const promptText = encodeURIComponent(SOHAM_CONTEXT + "\n\nUser Question: " + userText + "\nYour concise response:");
-
-      const response = await fetch('https://text.pollinations.ai/' + promptText, {
-        method: 'GET'
-      });
-
-      let answer = "";
-      if (response.ok) {
-        answer = await response.text();
-        // Basic sanity check to prevent empty chunks
-        if (!answer || answer.trim() === "") answer = "I apologize, my AI circuits misfired. Could you ask that again?";
-      } else {
-        answer = "Wow, your question was so intense it overloaded my free API limit! Please ping Soham directly on LinkedIn instead.";
-      }
-
-      // Remove typing indicator and show real text
-      document.getElementById(typingId)?.remove();
-      addMessage(answer, 'bot');
-
-    } catch (e) {
-      document.getElementById(typingId)?.remove();
-      addMessage("Connection error while reaching my AI brain. I'm currently running on low bandwidth!", 'bot');
+    if (text.includes('dpr')) {
+      if (text.includes('problem')) return intents.dpr_problem;
+      return intents.explain_dpr_analyzer;
     }
+
+    if (text.includes('project') || text.includes('built') || text.includes('build')) return intents.projects_overview;
+
+    if (text.includes('explore') || text.includes('exploring') || text.includes('currently')) return intents.current_interests;
+    if (text.includes('agent')) return intents.ai_agents;
+    if (text.includes('retrieval') || text.includes('rag')) return intents.rag_systems;
+    if (text.includes('future') || text.includes('next')) return intents.future_focus;
+
+    if (text.includes('contact') || text.includes('hire') || text.includes('email') || text.includes('linkedin')) return intents.contact;
+    if (text.includes('github') || text.includes('code') || text.includes('open source') || text.includes('repo')) return intents.github;
+
+    if (text.includes('philosophy') || text.includes('approach')) return intents.engineering_philosophy;
+    if (text.includes('system') || text.includes('type')) return intents.system_types;
+    if (text.includes('start') || text.includes('first') || text.includes('guide')) return intents.portfolio_guide;
+    if (text.includes('developer') || text.includes('kind')) return intents.developer_profile;
+
+    // Fallback intent
+    return "I am Soham's portfolio guide! You can ask me about LoadOptimize, DPR Analyzer, his tech stack, or what he's currently exploring.";
   }
 
   function handleUserInput() {
@@ -757,8 +745,21 @@ Here is the core information you know about Soham:
     addMessage(text, 'user');
     chatInput.value = '';
 
-    // 2. Actually fetch from LLM!
-    getBotResponse(text);
+    // Show typing indicator
+    const typingId = 'typing-' + Date.now();
+    const typingMsg = document.createElement('div');
+    typingMsg.id = typingId;
+    typingMsg.classList.add('ai-msg', 'bot');
+    typingMsg.innerHTML = '<span style="opacity:0.6;font-size:0.9em;">Thinking...</span>';
+    chatBody.appendChild(typingMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // 2. Simulate thinking delay for realism
+    setTimeout(() => {
+      document.getElementById(typingId)?.remove();
+      const response = getBotResponse(text);
+      addMessage(response, 'bot');
+    }, 600);
   }
 
   // Event Listeners
