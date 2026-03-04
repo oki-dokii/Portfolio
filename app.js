@@ -621,5 +621,5 @@ async function fetchGitHubStats() {
   }
 }
 
-// Call fetcher once DOM is ready
-document.addEventListener('DOMContentLoaded', fetchGitHubStats);
+// Call fetcher directly since script is loaded at the end of the body
+fetchGitHubStats();
