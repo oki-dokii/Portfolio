@@ -1702,9 +1702,9 @@ footer {
 
 .exploring-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
-  padding: 16px 20px;
+  padding: 24px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -1723,13 +1723,45 @@ footer {
   border-radius: 50%;
   background: var(--blue);
   box-shadow: 0 0 10px var(--blue);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.explore-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .explore-text {
   color: #fff;
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
+}
+
+.explore-desc {
+  color: #a1a1aa;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.explore-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.explore-tag {
+  font-size: 0.75rem;
+  color: var(--blue);
+  background: rgba(0, 128, 255, 0.1);
+  border: 1px solid rgba(0, 128, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-weight: 500;
 }
 
 /* ════════════════════════════════
