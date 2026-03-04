@@ -321,7 +321,8 @@
     <template id="tpl-load">
         <div class="spotlight-breakdown">
             <h3 class="pm-title">LoadOptimize <span class="spotlight-badge"
-                    style="margin-left:12px; margin-bottom:0px; display:inline-block">Featured</span></h3>
+                    style="margin-left:12px; margin-bottom:0px; display:inline-block; border-color: rgba(255, 215, 0, 0.4); color: #ffd700; background: rgba(255, 215, 0, 0.1);">Flipr
+                    Gold Rank</span></h3>
             <div class="spotlight-block">
                 <span class="spotlight-label">Problem:</span>
                 <p class="spotlight-text">Logistics companies struggle to optimize delivery routes, leading to massive
@@ -385,7 +386,7 @@
             <div class="spotlight-block">
                 <span class="spotlight-label">Impact:</span>
                 <p class="spotlight-text">Generated Top-3 to Top-10 ranked truck matches per shipment request. Reduced
-                    simulated zero-load runs by 18% optimizing CO2 logic. Won Smart India Hackathon 2025.</p>
+                    simulated zero-load runs by 18% optimizing CO2 logic. Secured Gold Rank in Flipr Hackathon 30.1.</p>
             </div>
         </div>
         <div class="project-carousel" data-images='["assets/loadoptimize-new.png"]' data-index="0">
@@ -399,13 +400,74 @@
 
     <template id="tpl-dpr">
         <div class="spotlight-breakdown">
-            <h3 class="pm-title">DPR Analyser</h3>
+            <h3 class="pm-title">DPR Analyser <span class="spotlight-badge"
+                    style="margin-left:12px; margin-bottom:0px; display:inline-block; border-color: rgba(255, 165, 0, 0.4); color: orange; background: rgba(255, 165, 0, 0.1);">SIH
+                    2025 Winner</span></h3>
             <div class="spotlight-block">
-                <span class="spotlight-label">Deep Dive & Impact:</span>
-                <p class="spotlight-text">Developed an AI pipeline evaluating DPRs across 3 dimensions: compliance,
-                    financial risk, and feasibility. Transformed 100+ page DPR PDFs into structured schemas using
-                    LLM-based extraction and RAG. Enabled ranked comparison and approval workflows for administrators
-                    via AI-generated justifications.</p>
+                <span class="spotlight-label">Problem:</span>
+                <p class="spotlight-text">Manual evaluation of 100+ page Detail Project Reports (DPRs) is extremely slow
+                    and error-prone, creating huge bottlenecks for administrative approvals.</p>
+            </div>
+            <div class="spotlight-block">
+                <span class="spotlight-label">Architecture:</span>
+                <p class="spotlight-text">PDF Document → Text Extractor → Gemini LLM (RAG) → Evaluation Engine → JSON
+                    Schema → Administrator Dashboard</p>
+                <div class="arch-diagram">
+                    <svg width="100%" height="auto" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+                        <style>
+                            .arch-box {
+                                fill: #f3f4f6;
+                                stroke: #8b5cf6;
+                                stroke-width: 2px;
+                                rx: 8px;
+                            }
+
+                            .arch-text {
+                                fill: #1f2937;
+                                font-family: sans-serif;
+                                font-size: 14px;
+                                font-weight: bold;
+                                text-anchor: middle;
+                                dominant-baseline: middle;
+                            }
+
+                            .arch-line {
+                                stroke: #9ca3af;
+                                stroke-width: 3px;
+                                stroke-dasharray: 4;
+                            }
+
+                            .arch-arrow {
+                                fill: #9ca3af;
+                            }
+                        </style>
+                        <defs>
+                            <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" class="arch-arrow" />
+                            </marker>
+                        </defs>
+                        <rect x="20" y="60" width="120" height="60" class="arch-box" />
+                        <text x="80" y="90" class="arch-text">PDF Upload</text>
+                        <line x1="140" y1="90" x2="200" y2="90" class="arch-line" marker-end="url(#arrowhead2)" />
+                        <rect x="200" y="60" width="120" height="60" class="arch-box" />
+                        <text x="260" y="90" class="arch-text">FastAPI + OCR</text>
+                        <line x1="320" y1="90" x2="380" y2="90" class="arch-line" marker-end="url(#arrowhead2)" />
+                        <rect x="380" y="50" width="160" height="80" class="arch-box"
+                            style="stroke: #f59e0b; fill: #fffbeb; stroke-width: 3px;" />
+                        <text x="460" y="80" class="arch-text" style="fill: #b45309">Gemini RAG</text>
+                        <text x="460" y="105" class="arch-text" style="font-size: 11px; fill: #d97706">(LLM
+                            Evaluation)</text>
+                        <line x1="540" y1="90" x2="600" y2="90" class="arch-line" marker-end="url(#arrowhead2)" />
+                        <rect x="600" y="60" width="120" height="60" class="arch-box" />
+                        <text x="660" y="90" class="arch-text">Approval Flow</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="spotlight-block">
+                <span class="spotlight-label">Impact:</span>
+                <p class="spotlight-text">Automated extraction and risk assessment over 3 dimensions: compliance,
+                    finance, and feasibility. Outperformed 100,000+ teams nationwide to win the Smart India Hackathon
+                    (SIH) 2025.</p>
             </div>
         </div>
         <div class="project-carousel" data-images='["assets/dpr-new.png"]' data-index="0">
@@ -421,11 +483,69 @@
         <div class="spotlight-breakdown">
             <h3 class="pm-title">GiftAI</h3>
             <div class="spotlight-block">
-                <span class="spotlight-label">Deep Dive & Impact:</span>
-                <p class="spotlight-text">Engineered an AI chatbot generating recommendations from 4 inputs (interests,
-                    occasion, budget, personality). Integrated real-time product retrieval with images, prices, and
-                    reviews via external APIs. Reduced gifting decision time by replacing manual search with
-                    conversational AI.</p>
+                <span class="spotlight-label">Problem:</span>
+                <p class="spotlight-text">Users experience significant decision paralysis trying to find the perfect
+                    physical gifts under budget for specific occasions and personalities.</p>
+            </div>
+            <div class="spotlight-block">
+                <span class="spotlight-label">Architecture:</span>
+                <p class="spotlight-text">React UI → Node.js Hub → Gemini AI (Reasoning) → External E-Commerce APIs →
+                    Ranked Visual Gift Output</p>
+                <div class="arch-diagram">
+                    <svg width="100%" height="auto" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+                        <style>
+                            .arch-box {
+                                fill: #f3f4f6;
+                                stroke: #ec4899;
+                                stroke-width: 2px;
+                                rx: 8px;
+                            }
+
+                            .arch-text {
+                                fill: #1f2937;
+                                font-family: sans-serif;
+                                font-size: 14px;
+                                font-weight: bold;
+                                text-anchor: middle;
+                                dominant-baseline: middle;
+                            }
+
+                            .arch-line {
+                                stroke: #9ca3af;
+                                stroke-width: 3px;
+                                stroke-dasharray: 4;
+                            }
+
+                            .arch-arrow {
+                                fill: #9ca3af;
+                            }
+                        </style>
+                        <defs>
+                            <marker id="arrowhead3" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" class="arch-arrow" />
+                            </marker>
+                        </defs>
+                        <rect x="20" y="60" width="120" height="60" class="arch-box" />
+                        <text x="80" y="90" class="arch-text">User Inputs</text>
+                        <line x1="140" y1="90" x2="200" y2="90" class="arch-line" marker-end="url(#arrowhead3)" />
+                        <rect x="200" y="60" width="120" height="60" class="arch-box" />
+                        <text x="260" y="90" class="arch-text">Node Router</text>
+                        <line x1="320" y1="90" x2="380" y2="90" class="arch-line" marker-end="url(#arrowhead3)" />
+                        <rect x="380" y="50" width="160" height="80" class="arch-box"
+                            style="stroke: #ec4899; fill: #fdf2f8; stroke-width: 3px;" />
+                        <text x="460" y="80" class="arch-text" style="fill: #be185d">Gemini Reasoning</text>
+                        <text x="460" y="105" class="arch-text" style="font-size: 11px; fill: #9d174d">(Product
+                            NLP)</text>
+                        <line x1="540" y1="90" x2="600" y2="90" class="arch-line" marker-end="url(#arrowhead3)" />
+                        <rect x="600" y="60" width="120" height="60" class="arch-box" />
+                        <text x="660" y="90" class="arch-text">Store APIs</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="spotlight-block">
+                <span class="spotlight-label">Impact:</span>
+                <p class="spotlight-text">Reduced gifting decision time from hours to minutes. Dynamically merged fuzzy
+                    reasoning of human psychology with hard data parameters (live price, ratings, images).</p>
             </div>
         </div>
         <div class="project-carousel" data-images='["assets/giftai-new.png"]' data-index="0">
@@ -441,10 +561,69 @@
         <div class="spotlight-breakdown">
             <h3 class="pm-title">SmartCampus</h3>
             <div class="spotlight-block">
-                <span class="spotlight-label">Deep Dive & Impact:</span>
-                <p class="spotlight-text">Designed a database schema for student enrollments and conflict-free
-                    timetables. Implemented Spring Security RBAC for 115+ REST endpoints. Built a scalable notification
-                    and attendance management system.</p>
+                <span class="spotlight-label">Problem:</span>
+                <p class="spotlight-text">Institutions suffer from disjointed data silos for enrollment, clashing
+                    timetables, and fragmented administrative control across many campus portals.</p>
+            </div>
+            <div class="spotlight-block">
+                <span class="spotlight-label">Architecture:</span>
+                <p class="spotlight-text">Admins/Students → REST API Gateway → Spring Security (JWT RBAC) →
+                    Orchestration Logic → Aiven Cloud MySQL</p>
+                <div class="arch-diagram">
+                    <svg width="100%" height="auto" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+                        <style>
+                            .arch-box {
+                                fill: #f3f4f6;
+                                stroke: #ea580c;
+                                stroke-width: 2px;
+                                rx: 8px;
+                            }
+
+                            .arch-text {
+                                fill: #1f2937;
+                                font-family: sans-serif;
+                                font-size: 14px;
+                                font-weight: bold;
+                                text-anchor: middle;
+                                dominant-baseline: middle;
+                            }
+
+                            .arch-line {
+                                stroke: #9ca3af;
+                                stroke-width: 3px;
+                                stroke-dasharray: 4;
+                            }
+
+                            .arch-arrow {
+                                fill: #9ca3af;
+                            }
+                        </style>
+                        <defs>
+                            <marker id="arrowhead4" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" class="arch-arrow" />
+                            </marker>
+                        </defs>
+                        <rect x="20" y="60" width="120" height="60" class="arch-box" />
+                        <text x="80" y="90" class="arch-text">API Client</text>
+                        <line x1="140" y1="90" x2="200" y2="90" class="arch-line" marker-end="url(#arrowhead4)" />
+                        <rect x="200" y="60" width="120" height="60" class="arch-box" />
+                        <text x="260" y="90" class="arch-text">Spring Gateway</text>
+                        <line x1="320" y1="90" x2="380" y2="90" class="arch-line" marker-end="url(#arrowhead4)" />
+                        <rect x="380" y="50" width="160" height="80" class="arch-box"
+                            style="stroke: #0284c7; fill: #f0f9ff; stroke-width: 3px;" />
+                        <text x="460" y="80" class="arch-text" style="fill: #0369a1">Core Services</text>
+                        <text x="460" y="105" class="arch-text" style="font-size: 11px; fill: #075985">(Auth,
+                            Timetable)</text>
+                        <line x1="540" y1="90" x2="600" y2="90" class="arch-line" marker-end="url(#arrowhead4)" />
+                        <rect x="600" y="60" width="120" height="60" class="arch-box" />
+                        <text x="660" y="90" class="arch-text">MySQL DB</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="spotlight-block">
+                <span class="spotlight-label">Impact:</span>
+                <p class="spotlight-text">Successfully handled sophisticated role-based access control protecting over
+                    115 REST API endpoints. Enforced complex conflict-free timetable validations autonomously.</p>
             </div>
         </div>
         <div class="project-carousel" data-images='["assets/smartcampus-new.png"]' data-index="0">
@@ -460,10 +639,69 @@
         <div class="spotlight-breakdown">
             <h3 class="pm-title">SmartClinic</h3>
             <div class="spotlight-block">
-                <span class="spotlight-label">Deep Dive & Impact:</span>
-                <p class="spotlight-text">Architected a full-stack platform supporting 4 user roles (patients, doctors,
-                    staff, admins). Implemented GPS-based staff check-ins with 150–200m radius validation. Automated
-                    queues, reminders, and records to reduce clinic coordination delays.</p>
+                <span class="spotlight-label">Problem:</span>
+                <p class="spotlight-text">Clinics frequently battle overloaded queue systems, poor records access across
+                    roles, and staff attendance monitoring friction.</p>
+            </div>
+            <div class="spotlight-block">
+                <span class="spotlight-label">Architecture:</span>
+                <p class="spotlight-text">Staff/Patient App → GeoLocation Module → Central Platform API → Role-Based
+                    Interfaces → Automated Notification Queues</p>
+                <div class="arch-diagram">
+                    <svg width="100%" height="auto" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+                        <style>
+                            .arch-box {
+                                fill: #f3f4f6;
+                                stroke: #10b981;
+                                stroke-width: 2px;
+                                rx: 8px;
+                            }
+
+                            .arch-text {
+                                fill: #1f2937;
+                                font-family: sans-serif;
+                                font-size: 14px;
+                                font-weight: bold;
+                                text-anchor: middle;
+                                dominant-baseline: middle;
+                            }
+
+                            .arch-line {
+                                stroke: #9ca3af;
+                                stroke-width: 3px;
+                                stroke-dasharray: 4;
+                            }
+
+                            .arch-arrow {
+                                fill: #9ca3af;
+                            }
+                        </style>
+                        <defs>
+                            <marker id="arrowhead5" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" class="arch-arrow" />
+                            </marker>
+                        </defs>
+                        <rect x="20" y="60" width="120" height="60" class="arch-box" />
+                        <text x="80" y="90" class="arch-text">Mobile View</text>
+                        <line x1="140" y1="90" x2="200" y2="90" class="arch-line" marker-end="url(#arrowhead5)" />
+                        <rect x="200" y="60" width="120" height="60" class="arch-box" />
+                        <text x="260" y="90" class="arch-text">GPS Module</text>
+                        <line x1="320" y1="90" x2="380" y2="90" class="arch-line" marker-end="url(#arrowhead5)" />
+                        <rect x="380" y="50" width="160" height="80" class="arch-box"
+                            style="stroke: #059669; fill: #ecfdf5; stroke-width: 3px;" />
+                        <text x="460" y="80" class="arch-text" style="fill: #065f46">Backend Service</text>
+                        <text x="460" y="105" class="arch-text" style="font-size: 11px; fill: #047857">(RBAC &
+                            Logic)</text>
+                        <line x1="540" y1="90" x2="600" y2="90" class="arch-line" marker-end="url(#arrowhead5)" />
+                        <rect x="600" y="60" width="120" height="60" class="arch-box" />
+                        <text x="660" y="90" class="arch-text">Queue System</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="spotlight-block">
+                <span class="spotlight-label">Impact:</span>
+                <p class="spotlight-text">Bridged communication for 4 distinct user roles on a unified platform. Reduced
+                    manual tracking via 150m strict radius constraints and automated shift queues.</p>
             </div>
         </div>
         <div class="project-carousel" data-images='["assets/smartclinic-new.png"]' data-index="0">
