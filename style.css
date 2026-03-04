@@ -1657,6 +1657,79 @@ footer {
 }
 
 /* ════════════════════════════════
+   QUICK START PANEL
+   ════════════════════════════════ */
+.quick-start-panel {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: fadeInMsg 0.8s ease backwards;
+  animation-delay: 0.8s;
+  position: relative;
+  z-index: 10;
+}
+
+.qs-label {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  font-weight: 600;
+}
+
+.qs-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.qs-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  border-radius: 100px;
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qs-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.qs-highlight {
+  background: rgba(0, 128, 255, 0.1);
+  border-color: rgba(0, 128, 255, 0.3);
+  color: #60a5fa;
+}
+
+.qs-highlight:hover {
+  background: rgba(0, 128, 255, 0.2);
+  border-color: rgba(0, 128, 255, 0.4);
+}
+
+@media (max-width: 600px) {
+  .qs-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* ════════════════════════════════
    AI CHAT ASSISTANT
    ════════════════════════════════ */
 .ai-chat-btn {
