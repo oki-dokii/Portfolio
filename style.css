@@ -1679,6 +1679,60 @@ footer {
 }
 
 /* ════════════════════════════════
+   CURRENTLY EXPLORING
+   ════════════════════════════════ */
+.exploring-list-wrapper {
+  max-width: 650px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+}
+
+.exploring-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.exploring-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.exploring-list li:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--blue);
+  transform: translateX(6px);
+}
+
+.explore-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 10px var(--blue);
+}
+
+.explore-text {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* ════════════════════════════════
    RESPONSIVE
    ════════════════════════════════ */
 @media (max-width: 1000px) {
