@@ -637,4 +637,4 @@ async function fetchGitHubStats() {
 }
 
 // Call fetcher directly since script is loaded at the end of the body
-fetchGitHubStats();
+// fetchGitHubStats();
