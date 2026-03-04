@@ -702,18 +702,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  function getBotResponse(userText) {
-    const lowerText = userText.toLowerCase();
+  // Comprehensive Soham Developer Context for the true LLM
+  const SOHAM_CONTEXT = `
+You are Soham Banerjee's AI Portfolio Assistant. You must act as a helpful, concise, and enthusiastic assistant embedded in his portfolio website.
+Here is the core information you know about Soham:
+- Projects: LoadOptimize (AI pipeline reducing delivery cost by 18%, won SIH 2025), DPR Analyser (LLM/RAG tool for financial parsing), GiftAI (smart chatbot), SmartCampus & SmartClinic (scalable management systems).
+- GitHub: Very active, 1200+ commits, 23+ repos. Handles @oki-dokii. Top languages: TypeScript, Python, Java, JavaScript.
+- Email: Soham.Banerjee3106@gmail.com
+- Character rules: DO NOT HALLUCINATE. Only answer questions using the facts provided above. If asked something unrelated or code-heavy, steer the conversation gracefully back to Soham's projects or skills. Keep responses short and web-friendly (under 3 sentences). You can use HTML formatting tags like <b> or <i> or <br>.
+  `;
 
-    // Find matching rule safely scanning across our array
-    for (let rule of knowledgeBase) {
-      if (rule.keywords.some(kw => lowerText.includes(kw))) {
-        return rule.response;
+  async function getBotResponse(userText) {
+    // Show typing indicator
+    const typingId = 'typing-' + Date.now();
+    const typingMsg = document.createElement('div');
+    typingMsg.id = typingId;
+    typingMsg.classList.add('ai-msg', 'bot');
+    typingMsg.innerHTML = '<span style="opacity:0.6;font-size:0.9em;">Thinking...</span>';
+    chatBody.appendChild(typingMsg);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    try {
+      // Build exactly structured prompt for Pollinations Text Endpoint
+      const promptText = encodeURIComponent(SOHAM_CONTEXT + "\n\nUser Question: " + userText + "\nYour concise response:");
+
+      const response = await fetch('https://text.pollinations.ai/' + promptText, {
+        method: 'GET'
+      });
+
+      let answer = "";
+      if (response.ok) {
+        answer = await response.text();
+        // Basic sanity check to prevent empty chunks
+        if (!answer || answer.trim() === "") answer = "I apologize, my AI circuits misfired. Could you ask that again?";
+      } else {
+        answer = "Wow, your question was so intense it overloaded my free API limit! Please ping Soham directly on LinkedIn instead.";
       }
-    }
 
-    // Fallback
-    return "That's an interesting question! I am fine-tuned strictly to talk about Soham's <strong>projects</strong>, his <strong>AI systems</strong>, and his <strong>GitHub credibility</strong>. Try asking me about one of those!";
+      // Remove typing indicator and show real text
+      document.getElementById(typingId)?.remove();
+      addMessage(answer, 'bot');
+
+    } catch (e) {
+      document.getElementById(typingId)?.remove();
+      addMessage("Connection error while reaching my AI brain. I'm currently running on low bandwidth!", 'bot');
+    }
   }
 
   function handleUserInput() {
@@ -724,11 +757,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addMessage(text, 'user');
     chatInput.value = '';
 
-    // 2. Simulate thinking delay for realism
-    setTimeout(() => {
-      const response = getBotResponse(text);
-      addMessage(response, 'bot');
-    }, 600);
+    // 2. Actually fetch from LLM!
+    getBotResponse(text);
   }
 
   // Event Listeners
