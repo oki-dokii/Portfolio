@@ -606,6 +606,80 @@ section#contact {
   transform: translateY(-8px) scale(1.03);
 }
 
+/* Tech Stack Overlay on Hover */
+.tech-overlay {
+  display: none;
+  /* Hidden by default in 3D mode */
+}
+
+.stage-card.grid-mode .tech-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  /* click passes through */
+}
+
+.feat-card:hover .tech-overlay {
+  opacity: 1;
+  /* perfectly match image hover transform */
+  transform: translateY(-8px) scale(1.03);
+}
+
+.tech-chip {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  transform: translateY(15px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.feat-card:hover .tech-chip {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Stagger chips */
+.feat-card:hover .tech-chip:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.feat-card:hover .tech-chip:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.feat-card:hover .tech-chip:nth-child(3) {
+  transition-delay: 0.15s;
+}
+
+.feat-card:hover .tech-chip:nth-child(4) {
+  transition-delay: 0.2s;
+}
+
+.feat-card:hover .tech-chip:nth-child(5) {
+  transition-delay: 0.25s;
+}
+
 
 
 .feat-mockup.dark {
