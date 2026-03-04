@@ -794,4 +794,25 @@ document.addEventListener('DOMContentLoaded', () => {
     chatInput.value = query;
     handleUserInput();
   };
+
+  // Gallery Carousel Handlers
+  window.prevCatImage = function (btn) {
+    const container = btn.parentElement;
+    const images = JSON.parse(container.getAttribute('data-images') || '[]');
+    if (images.length <= 1) return;
+    let idx = parseInt(container.getAttribute('data-index') || '0', 10);
+    idx = (idx - 1 + images.length) % images.length;
+    container.setAttribute('data-index', idx);
+    container.querySelector('.carousel-img').src = images[idx];
+  };
+
+  window.nextCatImage = function (btn) {
+    const container = btn.parentElement;
+    const images = JSON.parse(container.getAttribute('data-images') || '[]');
+    if (images.length <= 1) return;
+    let idx = parseInt(container.getAttribute('data-index') || '0', 10);
+    idx = (idx + 1) % images.length;
+    container.setAttribute('data-index', idx);
+    container.querySelector('.carousel-img').src = images[idx];
+  };
 });

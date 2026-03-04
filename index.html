@@ -150,6 +150,31 @@
     </section>
 
 
+    <!-- ═══════════════ QUANTIFIED IMPACT ═══════════════ -->
+    <section class="impact-section">
+        <div class="impact-container">
+            <h2 class="mono-heading text-center" style="justify-content: center; font-size: 2rem;">Real Impact</h2>
+            <div class="impact-stats">
+                <div class="impact-stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Core Systems Built</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">AI Automation Tools</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="stat-number">18%</div>
+                    <div class="stat-label">Max Cost Reduction</div>
+                </div>
+            </div>
+            <div class="impact-domains">
+                <strong>Domains:</strong> Logistics Optimization, Financial Document Analysis, Healthcare Management,
+                Recommendation Engines
+            </div>
+        </div>
+    </section>
+
     <!-- ═══════════════ FEATURE PRESENTATION (Cinematic) ═══════════════ -->
     <section id="projects" class="project-section">
         <div class="project-header-wrap">
@@ -260,15 +285,104 @@
         <div class="grid-reveal-anchor" id="grid-anchor"></div>
 
         <div class="featured-grid" id="project-grid">
-            <!-- Project cards will be populated/revealed here -->
-            <div class="feat-card" id="fc-load">
+            <div class="feat-card spotlight-card" id="fc-load">
                 <div class="feat-info">
-                    <h3>LoadOptimize</h3>
-                    <p>Designed a weighted optimization engine using 4 scoring parameters (utilization, route deviation,
-                        cost, CO2). Generated Top-3 to Top-10 ranked truck matches per shipment request. Reduced empty
-                        runs by prioritizing >70% capacity utilization and sustainable routing.</p>
+                    <div class="feat-header-flex">
+                        <h3>LoadOptimize</h3>
+                        <span class="spotlight-badge">Featured Project</span>
+                    </div>
+
+                    <div class="spotlight-breakdown">
+                        <div class="spotlight-block">
+                            <span class="spotlight-label">Problem:</span>
+                            <p class="spotlight-text">Logistics companies struggle to optimize delivery routes, leading
+                                to massive CO2 emissions, cost inefficiencies, and empty truck runs.</p>
+                        </div>
+                        <div class="spotlight-block">
+                            <span class="spotlight-label">Architecture:</span>
+                            <p class="spotlight-text">Frontend Client → Cloud API → Optimization Processing Engine → SQL
+                                Database → Ranked Match Output</p>
+                            <div class="arch-diagram">
+                                <svg width="100%" height="auto" viewBox="0 0 800 200"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <style>
+                                        .arch-box {
+                                            fill: #f3f4f6;
+                                            stroke: #3b82f6;
+                                            stroke-width: 2px;
+                                            rx: 8px;
+                                        }
+
+                                        .arch-text {
+                                            fill: #1f2937;
+                                            font-family: sans-serif;
+                                            font-size: 14px;
+                                            font-weight: bold;
+                                            text-anchor: middle;
+                                            dominant-baseline: middle;
+                                        }
+
+                                        .arch-line {
+                                            stroke: #9ca3af;
+                                            stroke-width: 3px;
+                                            stroke-dasharray: 4;
+                                        }
+
+                                        .arch-arrow {
+                                            fill: #9ca3af;
+                                        }
+                                    </style>
+                                    <defs>
+                                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
+                                            orient="auto">
+                                            <polygon points="0 0, 10 3.5, 0 7" class="arch-arrow" />
+                                        </marker>
+                                    </defs>
+
+                                    <rect x="20" y="60" width="120" height="60" class="arch-box" />
+                                    <text x="80" y="90" class="arch-text">User / Client</text>
+
+                                    <line x1="140" y1="90" x2="200" y2="90" class="arch-line"
+                                        marker-end="url(#arrowhead)" />
+
+                                    <rect x="200" y="60" width="120" height="60" class="arch-box" />
+                                    <text x="260" y="90" class="arch-text">Node.js API</text>
+
+                                    <line x1="320" y1="90" x2="380" y2="90" class="arch-line"
+                                        marker-end="url(#arrowhead)" />
+
+                                    <rect x="380" y="50" width="160" height="80" class="arch-box"
+                                        style="stroke: #10b981; fill: #ecfdf5; stroke-width: 3px;" />
+                                    <text x="460" y="80" class="arch-text" style="fill: #065f46">Heuristic Engine</text>
+                                    <text x="460" y="105" class="arch-text"
+                                        style="font-size: 11px; fill: #047857">(Scoring &amp; ML)</text>
+
+                                    <line x1="540" y1="90" x2="600" y2="90" class="arch-line"
+                                        marker-end="url(#arrowhead)" />
+
+                                    <rect x="600" y="60" width="120" height="60" class="arch-box" />
+                                    <text x="660" y="90" class="arch-text">SQL Output</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="spotlight-block">
+                            <span class="spotlight-label">Impact:</span>
+                            <p class="spotlight-text">Generated Top-3 to Top-10 ranked truck matches per shipment
+                                request. Reduced simulated zero-load runs by 18% optimizing CO2 logic. Won Smart India
+                                Hackathon 2025.</p>
+                        </div>
+                    </div>
+
+                    <div class="project-carousel" data-images='["assets/loadoptimize-new.png"]' data-index="0">
+                        <img src="assets/loadoptimize-new.png" class="carousel-img" alt="LoadOptimize" />
+                        <button class="carousel-btn prev"
+                            onclick="event.stopPropagation(); window.prevCatImage(this)">&#10094;</button>
+                        <button class="carousel-btn next"
+                            onclick="event.stopPropagation(); window.nextCatImage(this)">&#10095;</button>
+                    </div>
                 </div>
             </div>
+
             <div class="feat-card" id="fc-dpr">
                 <div class="feat-info">
                     <h3>DPR Analyser</h3>
@@ -276,8 +390,16 @@
                         feasibility. Transformed 100+ page DPR PDFs into structured schemas using LLM-based extraction
                         and RAG. Enabled ranked comparison and approval workflows for administrators via AI-generated
                         justifications.</p>
+                    <div class="project-carousel" data-images='["assets/dpr-new.png"]' data-index="0">
+                        <img src="assets/dpr-new.png" class="carousel-img" alt="DPR Analyser" />
+                        <button class="carousel-btn prev"
+                            onclick="event.stopPropagation(); window.prevCatImage(this)">&#10094;</button>
+                        <button class="carousel-btn next"
+                            onclick="event.stopPropagation(); window.nextCatImage(this)">&#10095;</button>
+                    </div>
                 </div>
             </div>
+
             <div class="feat-card" id="fc-gift">
                 <div class="feat-info">
                     <h3>GiftAI</h3>
@@ -285,22 +407,45 @@
                         personality). Integrated real-time product retrieval with images, prices, and reviews via
                         external APIs. Reduced gifting decision time by replacing manual search with conversational AI.
                     </p>
+                    <div class="project-carousel" data-images='["assets/giftai-new.png"]' data-index="0">
+                        <img src="assets/giftai-new.png" class="carousel-img" alt="GiftAI" />
+                        <button class="carousel-btn prev"
+                            onclick="event.stopPropagation(); window.prevCatImage(this)">&#10094;</button>
+                        <button class="carousel-btn next"
+                            onclick="event.stopPropagation(); window.nextCatImage(this)">&#10095;</button>
+                    </div>
                 </div>
             </div>
+
             <div class="feat-card" id="fc-campus">
                 <div class="feat-info">
                     <h3>SmartCampus</h3>
                     <p>Designed a database schema for student enrollments and conflict-free timetables. Implemented
                         Spring Security RBAC for 115+ REST endpoints. Built a scalable notification and attendance
                         management system.</p>
+                    <div class="project-carousel" data-images='["assets/smartcampus-new.png"]' data-index="0">
+                        <img src="assets/smartcampus-new.png" class="carousel-img" alt="SmartCampus" />
+                        <button class="carousel-btn prev"
+                            onclick="event.stopPropagation(); window.prevCatImage(this)">&#10094;</button>
+                        <button class="carousel-btn next"
+                            onclick="event.stopPropagation(); window.nextCatImage(this)">&#10095;</button>
+                    </div>
                 </div>
             </div>
+
             <div class="feat-card" id="fc-clinic">
                 <div class="feat-info">
                     <h3>SmartClinic</h3>
                     <p>Architected a full-stack platform supporting 4 user roles (patients, doctors, staff, admins).
                         Implemented GPS-based staff check-ins with 150–200m radius validation. Automated queues,
                         reminders, and records to reduce clinic coordination delays.</p>
+                    <div class="project-carousel" data-images='["assets/smartclinic-new.png"]' data-index="0">
+                        <img src="assets/smartclinic-new.png" class="carousel-img" alt="SmartClinic" />
+                        <button class="carousel-btn prev"
+                            onclick="event.stopPropagation(); window.prevCatImage(this)">&#10094;</button>
+                        <button class="carousel-btn next"
+                            onclick="event.stopPropagation(); window.nextCatImage(this)">&#10095;</button>
+                    </div>
                 </div>
             </div>
         </div>
