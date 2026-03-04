@@ -684,6 +684,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadoptimize_problem: "LoadOptimize addresses inefficiencies in logistics where trucks often run partially empty. By ranking the best truck matches for each shipment request, the system helps reduce empty runs and improve overall fleet utilization.",
     explain_dpr_analyzer: "DPR Analyzer is a system designed to analyze Daily Progress Reports from projects or construction teams. It processes report data to identify key metrics such as progress updates, delays, and resource usage, helping teams track project performance more effectively.",
     dpr_problem: "Daily Progress Reports often contain large amounts of unstructured information. DPR Analyzer extracts important insights automatically, making it easier for teams to monitor progress and identify issues quickly.",
+    explain_giftai: "GiftAI is a conversational recommendation engine that uses AI to suggest gifts based on user interests, occasion, budget, and personality. It integrates with external APIs to retrieve real-time product data, reducing gifting decision time.",
+    explain_smartcampus: "SmartCampus is a comprehensive student and campus management backend built with Spring Boot. It handles student enrollments, conflict-free timetable generation, and secure role-based access control for over 115 endpoints.",
+    explain_smartclinic: "SmartClinic is a full-stack healthcare platform supporting patients, doctors, and admins. It features automated queue management, appointment reminders, and even GPS-based staff check-ins with radius validation to streamline clinic operations.",
     current_interests: "Soham is currently exploring AI agents for automation, large-scale optimization systems, and retrieval-based knowledge systems.",
     ai_agents: "AI agents are systems that can plan and execute tasks autonomously using tools, APIs, and reasoning. Soham is interested in using agents to automate workflows and build intelligent systems.",
     rag_systems: "Retrieval-based systems combine search with AI models to answer questions using external knowledge sources. They retrieve relevant information from a database and use it to generate accurate responses.",
@@ -718,6 +721,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return intents.explain_dpr_analyzer;
     }
 
+    if (text.includes('gift') || text.includes('giftai')) return intents.explain_giftai;
+    if (text.includes('campus') || text.includes('smartcampus')) return intents.explain_smartcampus;
+    if (text.includes('clinic') || text.includes('smartclinic')) return intents.explain_smartclinic;
+
     if (text.includes('project') || text.includes('built') || text.includes('build')) return intents.projects_overview;
 
     if (text.includes('explore') || text.includes('exploring') || text.includes('currently')) return intents.current_interests;
@@ -734,7 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (text.includes('developer') || text.includes('kind')) return intents.developer_profile;
 
     // Fallback intent
-    return "I am Soham's portfolio guide! You can ask me about LoadOptimize, DPR Analyzer, his tech stack, or what he's currently exploring.";
+    return "I am Soham's portfolio guide! You can ask me about LoadOptimize, DPR Analyzer, GiftAI, SmartClinic, or what he's currently exploring.";
   }
 
   function handleUserInput() {
