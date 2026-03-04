@@ -569,3 +569,57 @@ document.addEventListener('mousemove', e => {
     });
   }, { passive: true });
 })();
+
+// ════════════════════════════════
+// GITHUB STATS FETCHER
+// ════════════════════════════════
+async function fetchGitHubStats() {
+  try {
+    const username = 'oki-dokii';
+
+    // 1. Fetch public profile for repo count
+    const userRes = await fetch(`https://api.github.com/users/${username}`);
+    if (!userRes.ok) return;
+    const userData = await userRes.json();
+
+    const reposEl = document.getElementById('github-repos');
+    if (reposEl && userData.public_repos) {
+      reposEl.textContent = userData.public_repos + '+';
+    }
+
+    // 2. Fetch repos for language aggregation
+    const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+    if (!reposRes.ok) return;
+    const reposData = await reposRes.json();
+
+    const langCounts = {};
+    reposData.forEach(repo => {
+      if (repo.language) {
+        langCounts[repo.language] = (langCounts[repo.language] || 0) + 1;
+      }
+    });
+
+    // Get Top 2 Languages
+    const topLangs = Object.entries(langCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 2)
+      .map(entry => entry[0]);
+
+    const langsEl = document.getElementById('github-langs');
+    if (langsEl && topLangs.length > 0) {
+      // Abbreviate common long languages to fit beautifully in the UI
+      const formattedLangs = topLangs.map(l => {
+        if (l === 'TypeScript') return 'TS';
+        if (l === 'JavaScript') return 'JS';
+        if (l === 'Python') return 'Py';
+        return l;
+      }).join(', ');
+      langsEl.textContent = formattedLangs;
+    }
+  } catch (error) {
+    console.error('Quietly failed to fetch GitHub stats due to rate limiting or connection:', error);
+  }
+}
+
+// Call fetcher once DOM is ready
+document.addEventListener('DOMContentLoaded', fetchGitHubStats);
