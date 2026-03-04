@@ -2056,6 +2056,87 @@ footer {
 }
 
 /* ════════════════════════════════
+   PROJECT COMPREHENSIVE MODAL
+   ════════════════════════════════ */
+.project-modal-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  padding: 20px;
+}
+
+.project-modal-wrapper.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.90);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.project-modal-content {
+  position: relative;
+  background: var(--black);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  padding: 40px;
+  transform: translateY(20px) scale(0.98);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-modal-wrapper.active .project-modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 100;
+}
+
+.project-modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.pm-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+/* ════════════════════════════════
    CURRENTLY EXPLORING
    ════════════════════════════════ */
 .exploring-list-wrapper {
@@ -2227,6 +2308,23 @@ footer {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 30px;
+}
+
+.view-details-link {
+  display: inline-block;
+  color: var(--blue);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.view-details-link:hover {
+  opacity: 0.8;
+  transform: translateX(4px);
 }
 
 .feat-header-flex {

@@ -815,4 +815,36 @@ document.addEventListener('DOMContentLoaded', () => {
     container.setAttribute('data-index', idx);
     container.querySelector('.carousel-img').src = images[idx];
   };
+
+  // Open Detailed Project Modal
+  window.openProjectModal = function (projectId) {
+    const modalWrap = document.getElementById('project-modal');
+    const modalBody = document.getElementById('project-modal-body');
+    const template = document.getElementById('tpl-' + projectId);
+
+    if (modalWrap && modalBody && template) {
+      // Clear old
+      modalBody.innerHTML = '';
+      // Clone new
+      const clone = template.content.cloneNode(true);
+      modalBody.appendChild(clone);
+
+      modalWrap.classList.add('active');
+      document.body.style.overflow = 'hidden'; // prevent bg scroll
+    }
+  };
+
+  // Close Detailed Project Modal
+  window.closeProjectModal = function () {
+    const modalWrap = document.getElementById('project-modal');
+    if (modalWrap) {
+      modalWrap.classList.remove('active');
+      document.body.style.overflow = '';
+
+      // Delay clear so reverse animation has content
+      setTimeout(() => {
+        document.getElementById('project-modal-body').innerHTML = '';
+      }, 400);
+    }
+  };
 });
