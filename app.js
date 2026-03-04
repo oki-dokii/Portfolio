@@ -638,3 +638,113 @@ async function fetchGitHubStats() {
 
 // Call fetcher directly since script is loaded at the end of the body
 // fetchGitHubStats();
+
+/* ════════════════════════════════
+   AI CHAT ASSISTANT LOGIC
+   ════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const chatBtn = document.getElementById('ai-chat-btn');
+  const chatPanel = document.getElementById('ai-chat-panel');
+  const chatClose = document.getElementById('ai-chat-close');
+  const chatBody = document.getElementById('ai-chat-body');
+  const chatInput = document.getElementById('ai-chat-input');
+  const chatSubmit = document.getElementById('ai-chat-submit');
+  const chatSuggestions = document.querySelectorAll('.ai-chip');
+
+  if (!chatBtn || !chatPanel) return;
+
+  // Toggle panel
+  chatBtn.addEventListener('click', () => {
+    chatPanel.classList.remove('hidden');
+    chatBtn.classList.add('hidden');
+    chatInput.focus();
+  });
+
+  chatClose.addEventListener('click', () => {
+    chatPanel.classList.add('hidden');
+    chatBtn.classList.remove('hidden');
+  });
+
+  // Handle messages
+  function addMessage(text, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('ai-msg', sender);
+    msgDiv.innerHTML = text; // allow html formatted responses
+    chatBody.appendChild(msgDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  // Pre-programmed Knowledge Base (Local RAG substitute)
+  const knowledgeBase = [
+    {
+      keywords: ['project', 'built', 'build', 'work', 'portfolio'],
+      response: '<p>Soham has architected several high-impact projects:</p><ul><li><strong>LoadOptimize</strong>: An AI pipeline that reduced delivery cost by 18%.</li><li><strong>DPR Analyser</strong>: An LLM-based RAG tool for financial risk parsing.</li><li><strong>GiftAI</strong>: A smart chatbot for product recommendations.</li><li><strong>SmartCampus & SmartClinic</strong>: Scalable management systems built with Spring Boot.</li></ul>'
+    },
+    {
+      keywords: ['explain', 'ai', 'systems', 'intelligence', 'rag', 'llm', 'machine learning'],
+      response: '<p>Soham specializes in integrating AI into practical applications. For instance, in <strong>DPR Analyser</strong>, he used <em>LLMs and RAG</em> to transform 100+ page PDFs into structured schemas for financial risk analysis. In <strong>GiftAI</strong>, he built a conversational recommendation engine using <em>Prompt Engineering and external APIs</em>.</p>'
+    },
+    {
+      keywords: ['github', 'repo', 'commits', 'code', 'open source'],
+      response: '<p>Soham is very active on GitHub! He has over <strong>1,200 commits</strong> and <strong>23+ repositories</strong> under the handle <a href="https://github.com/oki-dokii" target="_blank" style="color:var(--blue);">@oki-dokii</a>. His top languages are TypeScript and Python.</p>'
+    },
+    {
+      keywords: ['problem', 'biggest', 'real-world', 'impact', 'challenge', 'logistics', 'loadoptimize'],
+      response: '<p><strong>LoadOptimize</strong> solved a massive real-world problem: logistics companies struggling with empty truck runs. By designing an AI heuristic optimization engine mathematically focusing on capacity utilization and CO2, he simulated an <strong>18% cost reduction</strong>. This actually won him the <em>Smart India Hackathon 2025</em>!</p>'
+    },
+    {
+      keywords: ['hello', 'hi', 'hey', 'greetings', 'who'],
+      response: 'Hello there! I am Soham\'s digital AI assistant. I am trained entirely on his portfolio context. Feel free to ask me anything about his projects, skills, impact, or GitHub.'
+    },
+    {
+      keywords: ['contact', 'hire', 'email', 'linkedin', 'phone', 'connect'],
+      response: 'You can reach Soham directly via email at <a href="mailto:Soham.Banerjee3106@gmail.com" style="color:var(--blue);">Soham.Banerjee3106@gmail.com</a> or connect with him extensively on <a href="https://www.linkedin.com/in/soham-banerjee-tech" target="_blank" style="color:var(--blue);">LinkedIn</a>.'
+    }
+  ];
+
+  function getBotResponse(userText) {
+    const lowerText = userText.toLowerCase();
+
+    // Find matching rule safely scanning across our array
+    for (let rule of knowledgeBase) {
+      if (rule.keywords.some(kw => lowerText.includes(kw))) {
+        return rule.response;
+      }
+    }
+
+    // Fallback
+    return "That's an interesting question! I am fine-tuned strictly to talk about Soham's <strong>projects</strong>, his <strong>AI systems</strong>, and his <strong>GitHub credibility</strong>. Try asking me about one of those!";
+  }
+
+  function handleUserInput() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    // 1. Show User Msg
+    addMessage(text, 'user');
+    chatInput.value = '';
+
+    // 2. Simulate thinking delay for realism
+    setTimeout(() => {
+      const response = getBotResponse(text);
+      addMessage(response, 'bot');
+    }, 600);
+  }
+
+  // Event Listeners
+  chatSubmit.addEventListener('click', handleUserInput);
+
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      handleUserInput();
+    }
+  });
+
+  // Suggestion Chips
+  chatSuggestions.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chatInput.value = chip.textContent;
+      handleUserInput();
+    });
+  });
+});
