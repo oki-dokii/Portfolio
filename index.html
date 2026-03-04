@@ -149,39 +149,7 @@
         </div>
     </section>
 
-    <!-- ═══════════════ SPOTLIGHT FEATURE ═══════════════ -->
-    <section id="spotlight" class="spotlight-section">
-        <div class="spotlight-container">
-            <div class="spotlight-header">
-                <span class="spotlight-badge">Featured Project</span>
-                <h2 class="spotlight-title">LoadOptimize</h2>
-            </div>
 
-            <div class="spotlight-grid">
-                <div class="spotlight-content">
-                    <div class="spotlight-block">
-                        <span class="spotlight-label">Problem:</span>
-                        <p class="spotlight-text">Logistics companies struggle to optimize delivery routes.</p>
-                    </div>
-                    <div class="spotlight-block">
-                        <span class="spotlight-label">Solution:</span>
-                        <p class="spotlight-text">Built an optimization engine using AI heuristics.</p>
-                    </div>
-                    <div class="spotlight-block">
-                        <span class="spotlight-label">Impact:</span>
-                        <p class="spotlight-text">Reduced simulated delivery cost by 18%.</p>
-                    </div>
-                    <a href="https://github.com/oki-dokii/Flipr" target="_blank" class="follow-btn mt-4"
-                        style="margin-top: 24px;">View Repository</a>
-                </div>
-
-                <div class="spotlight-image-wrapper">
-                    <img src="assets/loadoptimize-new.png" alt="LoadOptimize Overview" class="spotlight-image" />
-                    <div class="spotlight-glow"></div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- ═══════════════ FEATURE PRESENTATION (Cinematic) ═══════════════ -->
     <section id="projects" class="project-section">
         <div class="project-header-wrap">
@@ -191,9 +159,17 @@
 
         <div class="project-stage" id="stage">
             <div class="stage-item item-3d" data-index="0">
-                <div class="stage-card" id="sc-load" data-href="https://github.com/oki-dokii/Flipr"
-                    onclick="window.open(this.dataset.href, '_blank')" style="cursor: pointer;">
-                    <img src="assets/loadoptimize-new.png" alt="LoadOptimize" class="stage-img">
+                <div class="stage-card" id="sc-load">
+                    <img src="assets/loadoptimize-new.png" alt="LoadOptimize" class="stage-img"
+                        onclick="window.askAI('Explain LoadOptimize')" style="cursor: pointer;"
+                        title="Ask AI about LoadOptimize">
+                    <a href="https://github.com/oki-dokii/Flipr" target="_blank" class="card-gh-btn"
+                        title="View Source">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
                     <div class="tech-overlay">
                         <span class="tech-chip">React</span>
                         <span class="tech-chip">TypeScript</span>
@@ -203,9 +179,17 @@
                 </div>
             </div>
             <div class="stage-item item-3d" data-index="1">
-                <div class="stage-card" id="sc-dpr" data-href="https://github.com/aangir14/SIH-first"
-                    onclick="window.open(this.dataset.href, '_blank')" style="cursor: pointer;">
-                    <img src="assets/dpr-new.png" alt="DPR Analyser" class="stage-img">
+                <div class="stage-card" id="sc-dpr">
+                    <img src="assets/dpr-new.png" alt="DPR Analyser" class="stage-img"
+                        onclick="window.askAI('Explain DPR Analyzer')" style="cursor: pointer;"
+                        title="Ask AI about DPR Analyzer">
+                    <a href="https://github.com/aangir14/SIH-first" target="_blank" class="card-gh-btn"
+                        title="View Source">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
                     <div class="tech-overlay">
                         <span class="tech-chip">FastAPI</span>
                         <span class="tech-chip">Gemini 2.0</span>
@@ -215,9 +199,16 @@
                 </div>
             </div>
             <div class="stage-item item-3d" data-index="2">
-                <div class="stage-card" id="sc-gift" data-href="https://github.com/oki-dokii/TrendGiftLove#"
-                    onclick="window.open(this.dataset.href, '_blank')" style="cursor: pointer;">
-                    <img src="assets/giftai-new.png" alt="GiftAI" class="stage-img">
+                <div class="stage-card" id="sc-gift">
+                    <img src="assets/giftai-new.png" alt="GiftAI" class="stage-img"
+                        onclick="window.askAI('Explain GiftAI')" style="cursor: pointer;" title="Ask AI about GiftAI">
+                    <a href="https://github.com/oki-dokii/TrendGiftLove#" target="_blank" class="card-gh-btn"
+                        title="View Source">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
                     <div class="tech-overlay">
                         <span class="tech-chip">React</span>
                         <span class="tech-chip">Gemini</span>
@@ -226,9 +217,17 @@
                 </div>
             </div>
             <div class="stage-item item-3d" data-index="3">
-                <div class="stage-card" id="sc-campus" data-href="https://github.com/Jdsb06/SmartCampus"
-                    onclick="window.open(this.dataset.href, '_blank')" style="cursor: pointer;">
-                    <img src="assets/smartcampus-new.png" alt="SmartCampus" class="stage-img">
+                <div class="stage-card" id="sc-campus">
+                    <img src="assets/smartcampus-new.png" alt="SmartCampus" class="stage-img"
+                        onclick="window.askAI('Explain SmartCampus')" style="cursor: pointer;"
+                        title="Ask AI about SmartCampus">
+                    <a href="https://github.com/Jdsb06/SmartCampus" target="_blank" class="card-gh-btn"
+                        title="View Source">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
                     <div class="tech-overlay">
                         <span class="tech-chip">Spring Boot</span>
                         <span class="tech-chip">MySQL</span>
@@ -237,9 +236,17 @@
                 </div>
             </div>
             <div class="stage-item item-3d" data-index="4">
-                <div class="stage-card" id="sc-clinic" data-href="https://github.com/oki-dokii/Smart-Clinic"
-                    onclick="window.open(this.dataset.href, '_blank')" style="cursor: pointer;">
-                    <img src="assets/smartclinic-new.png" alt="SmartClinic" class="stage-img">
+                <div class="stage-card" id="sc-clinic">
+                    <img src="assets/smartclinic-new.png" alt="SmartClinic" class="stage-img"
+                        onclick="window.askAI('Explain SmartClinic')" style="cursor: pointer;"
+                        title="Ask AI about SmartClinic">
+                    <a href="https://github.com/oki-dokii/Smart-Clinic" target="_blank" class="card-gh-btn"
+                        title="View Source">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path
+                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
                     <div class="tech-overlay">
                         <span class="tech-chip">React</span>
                         <span class="tech-chip">TypeScript</span>

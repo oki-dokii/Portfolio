@@ -785,4 +785,13 @@ document.addEventListener('DOMContentLoaded', () => {
       handleUserInput();
     });
   });
+
+  // Global helper for stage-card image clicks
+  window.askAI = function (query) {
+    if (chatPanel.classList.contains('hidden')) {
+      chatBtn.click(); // Expand the panel if closed
+    }
+    chatInput.value = query;
+    handleUserInput();
+  };
 });

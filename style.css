@@ -487,6 +487,34 @@ section#contact {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
   transition: border-color 0.3s ease;
+  position: relative;
+}
+
+.card-gh-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+  text-decoration: none;
+}
+
+.card-gh-btn:hover {
+  background: rgba(0, 128, 255, 0.4);
+  border-color: rgba(0, 128, 255, 0.6);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 128, 255, 0.3);
 }
 
 .stage-img {
