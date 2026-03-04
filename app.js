@@ -616,6 +616,21 @@ async function fetchGitHubStats() {
       }).join(', ');
       langsEl.textContent = formattedLangs;
     }
+
+    // 3. Fetch public commits count dynamically
+    // Note: GitHub search API is rate-limited heavily for unauthenticated users, so if it fails, it leaves the hardcoded fallback
+    const commitsRes = await fetch(`https://api.github.com/search/commits?q=author:${username}`, {
+      headers: { 'Accept': 'application/vnd.github.cloak-preview+json' }
+    });
+    if (commitsRes.ok) {
+      const commitsData = await commitsRes.json();
+      const commitsEl = document.getElementById('github-commits');
+      if (commitsEl && commitsData.total_count !== undefined) {
+        // For accounts with older history that aren't public, u can optionally add a baseline. 
+        // Rendering the exact scraped public commits:
+        commitsEl.textContent = commitsData.total_count.toLocaleString();
+      }
+    }
   } catch (error) {
     console.error('Quietly failed to fetch GitHub stats due to rate limiting or connection:', error);
   }
